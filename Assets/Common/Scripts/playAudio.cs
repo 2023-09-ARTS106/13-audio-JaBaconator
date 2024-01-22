@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class playAudio : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public AudioClip splashSound;
+    public AudioSource audioS;     //a reference to my audio source
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Water"))
+        {
+            Debug.Log("Entered the Water");
+            audioS.PlayOneShot(splashSound);
+        } 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerExit(Collider other)
     {
-        
+        if (other.gameObject.CompareTag("Water"))
+        {
+            Debug.Log("Exited the Water");
+            audioS.PlayOneShot(splashSound);
+        } 
     }
 }
